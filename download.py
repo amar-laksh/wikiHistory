@@ -29,7 +29,7 @@ def print_section(data, section):
 
 wiki_wiki = wikipediaapi.Wikipedia('en')
 cat = wiki_wiki.page("Category:Days of the year")
-section='Deaths'
+section='Events'
 for date in cat.categorymembers:
     page_py = wiki_wiki.page(date)
     if(len(page_py.section_by_title(section).sections) >= 1):

@@ -29,7 +29,8 @@ filename=r"./data/births.csv"
 topic="date"
 df = returnDataFrameOF(filename)
 dates = df.groupby(topic)
-barPlotOf(dates, "Month-Date", "Number of Famous People Dead", "Months Vs. Deaths")
+barPlotOf(dates, "Date", "Number of Events", "Dates Vs. Events")
+#  wordCloudOf(df.desc)
 
 
 
