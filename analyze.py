@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 def returnDataFrameOF(dataset):
-    df = pd.read_csv(dataset, encoding ="utf-8", index_col=0, dtype={"Date": "string", "Year": "string", "Person": "string", "Desc": "string"})
-    return df
+    return pd.read_csv(dataset, encoding ="utf-8", index_col=0)
 
 def barPlotOf(dataFrame, xlabel, ylabel, title):
     plt.figure(figsize=(15,10))
@@ -27,7 +26,7 @@ def wordCloudOf(dataFrame):
     plt.show()
 
 filename=r"./data/births.csv"
-topic="year"
+topic="date"
 df = returnDataFrameOF(filename)
 dates = df.groupby(topic)
 barPlotOf(dates, "Month-Date", "Number of Famous People Dead", "Months Vs. Deaths")
