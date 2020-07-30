@@ -26,9 +26,11 @@ def wordCloudOf(dataFrame):
     plt.axis("off")
     plt.show()
 
-df = returnDataFrameOF(r"deaths.csv")
-dates = df.groupby("Date")
-barPlotOf(dates, "Month-Date", "Number of Famous People Died", "Months Vs. Died")
+filename=r"./data/births.csv"
+topic="year"
+df = returnDataFrameOF(filename)
+dates = df.groupby(topic)
+barPlotOf(dates, "Month-Date", "Number of Famous People Dead", "Months Vs. Deaths")
 
 
 

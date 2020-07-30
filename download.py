@@ -17,19 +17,22 @@ def print_categorymembers(categorymembers, level=0, max_level=1):
         if c.ns == wikipediaapi.Namespace.CATEGORY and level < max_level:
             print_categorymembers(c.categorymembers, level=level + 1, max_level=max_level)
 
-def print_sections(sections, level=0):
+def print_sections(data, sections, level=0):
     for s in sections:
-        print("%s" % s.text)
-        print_sections(s.sections, level + 1)
+        for line in s.text.splitlines():
+            print("%s,%s" % (data, line))
+        print_sections(data, s.sections, level + 1)
 
-def print_section(section):
-    print("%s" % section)
+def print_section(data, section):
+    for line in section.splitlines():
+        print("%s,%s" % (data, line))
 
 wiki_wiki = wikipediaapi.Wikipedia('en')
 cat = wiki_wiki.page("Category:Days of the year")
+section='Deaths'
 for date in cat.categorymembers:
     page_py = wiki_wiki.page(date)
-    if(len(page_py.section_by_title('Deaths').sections) >= 1):
-        print_sections(page_py.section_by_title('Deaths').sections)
+    if(len(page_py.section_by_title(section).sections) >= 1):
+        print_sections(date, page_py.section_by_title(section).sections)
     else:
-        print_section(page_py.section_by_title('Deaths').text)
+        print_section(date, page_py.section_by_title(section).text)
