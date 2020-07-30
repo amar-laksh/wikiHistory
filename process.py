@@ -22,14 +22,14 @@ def print_sections(sections, level=0):
         print("%s" % s.text)
         print_sections(s.sections, level + 1)
 
+def print_section(section):
+    print("%s" % section)
 
 wiki_wiki = wikipediaapi.Wikipedia('en')
 cat = wiki_wiki.page("Category:Days of the year")
 for date in cat.categorymembers:
     page_py = wiki_wiki.page(date)
-    if(len(page_py.section_by_title('Deaths').sections) > 1):
-        print(date)
-        print(page_py.section_by_title('Deaths').sections)
-
-    #      for birth in page_py.section_by_title('Deaths').text.split("\n"):
-    #  print("%s, %s" % (date, birth))
+    if(len(page_py.section_by_title('Deaths').sections) >= 1):
+        print_sections(page_py.section_by_title('Deaths').sections)
+    else:
+        print_section(page_py.section_by_title('Deaths').text)
