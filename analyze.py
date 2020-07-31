@@ -25,7 +25,7 @@ def wordCloudOf(dataFrame):
     plt.axis("off")
     plt.show()
 
-filename=r"./data/births.csv"
+filename=r"./data/events.csv"
 topic="date"
 df = returnDataFrameOF(filename)
 dates = df.groupby(topic)

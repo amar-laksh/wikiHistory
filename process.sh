@@ -6,9 +6,15 @@
 # Last Modified By  : Amar Lakshya <amar.lakshya@protonmail.com>
 
 files=$(ls *.csv)
-columns="date,year,person,desc,NA,NA,NA,NA,NA,NA,NA,NA"
 mkdir -p data
+
+header="date,year,person,desc"
 for file in $files; do
 	cat $file | sed 's/\s*–\s*/,/g' | sed 's/\s*,\s*/,/g' > data/$file
-	sed -i "1s;^;$columns\n;" data/$file
+	noOfColumns=$(sed 's/[^,]//g' data/$file | wc -L)
+	for i in $(seq $(expr $noOfColumns + 1)); do
+		header="$header,NA"
+	done
+	sed -i "1s;^;$header\n;" data/$file
 done
+
