@@ -29,7 +29,7 @@ def print_pretty(data, section, level=0):
 get = wikipediaapi.Wikipedia('en')
 
 page = get.page("Category:Days of the year")
-section='Events'
+section='Deaths'
 
 for member in page.categorymembers:
     result = get.page(member)

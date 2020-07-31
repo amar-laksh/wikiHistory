@@ -3,7 +3,7 @@ from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import pandas as pd
 
-def returnDataFrameOF(dataset):
+def returnDataFrameOf(dataset):
     return pd.read_csv(dataset, encoding ="utf-8", index_col=0)
 
 def barPlotOf(dataFrame, xlabel, ylabel, title):
@@ -26,9 +26,10 @@ def wordCloudOf(dataFrame):
     plt.show()
 
 filename=r"./data/events.csv"
-topic="date"
-df = returnDataFrameOF(filename)
-dates = df.groupby(topic)
+column="year"
+
+df = returnDataFrameOf(filename)
+dates = df.groupby(column)
 barPlotOf(dates, "Date", "Number of Events", "Dates Vs. Events")
 #  wordCloudOf(df.desc)
 
